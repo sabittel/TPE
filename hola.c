@@ -1,6 +1,6 @@
 #include <stdio.h>
 
 int main(void){
-    printf("HOLA funco? \n");
+    printf("HOLA funco? si funco\n");
     return 0;
 }
