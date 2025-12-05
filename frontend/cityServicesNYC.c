@@ -7,7 +7,11 @@
 
 int hasCSVExtension(const char *path);
 
-int main(){
+int main(int argc, char * argv[]){
+    if(argc!=3){
+        printf("Formato incorrecto\n");
+        return 1;
+    }
     if(){ /*validar que se pasen los csv*/
         .
     }
