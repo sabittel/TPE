@@ -3,7 +3,7 @@
 
 
 //TAD opaco
-typedef struct cityservicesCDT *cityservicesADT;
+typedef struct cityServicesCDT *cityServicesADT;
 
 
 #endif

@@ -36,9 +36,17 @@ typedef struct quadrantNode { /*representa un cuadrante*/
     struct quadrantNode *next;
 } quadrantNode;
 
-struct cityServicesCDT { 
+typedef struct cityServicesCDT { 
     typeNode    *types;       /* diccionario code -> name */
     boroughNode *boroughs;    /* estructuras para Q1 y Q2 */
     quadrantNode *quadrants;  /* estructuras para Q3 */
-};
+}cityServicesCDT;
+
+cityServicesADT newServiceADT(){
+    cityServicesADT new=malloc(cityServicesCDT);
+    new->types=;
+    new->boroughs=;
+    new->quadrants=;
+    return new;
+}
 
