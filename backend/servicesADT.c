@@ -1,5 +1,6 @@
 #include "servicesADT.h"
 
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
@@ -42,7 +43,19 @@ typedef struct cityServicesCDT {
     quadrantNode *quadrants;  /* estructuras para Q3 */
 }cityServicesCDT;
 
+int validCalloc(cityServicesADT adt){
+    if(adt==NULL){
+        fprintf(stderr, "ERROR, NO HAY MEMORIA DISPONIBLE\n");
+        return 1;
+    }
+    return 0;
+}
+
 cityServicesADT newServiceADT(){
-    return calloc(1, sizeof(cityServicesCDT));
+    cityServicesADT new=calloc(1, sizeof(cityServicesCDT));
+    if(!validCalloc(new)){
+        return NULL;
+    }
+    return new;
 }
 
