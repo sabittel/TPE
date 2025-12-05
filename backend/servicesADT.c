@@ -43,10 +43,10 @@ typedef struct cityServicesCDT {
 }cityServicesCDT;
 
 cityServicesADT newServiceADT(){
-    cityServicesADT new=malloc(cityServicesCDT);
-    new->types=;
-    new->boroughs=;
-    new->quadrants=;
-    return new;
+    cityServicesADT new=malloc(sizeof(cityServicesCDT));
+    new->types=NULL;
+    new->boroughs=NULL;
+    new->quadrants=NULL;
+    return new; /*puse los 3 en NULL para tener algo por ahora, pero en caso de realmente tener que dejar NULL, mas facil hacer un calloc en vez de malloc*/
 }
 
