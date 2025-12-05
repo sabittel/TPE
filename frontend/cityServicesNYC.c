@@ -4,24 +4,22 @@
 #include <ctype.h>
 
 #include "../backend/servicesADT.h"
+#include "validation.h"
 
 int hasCSVExtension(const char *path);
 
 int main(int argc, char * argv[]){
     if(argc!=3){
-        printf("Formato incorrecto\n");
+        fprintf(stderr, "Error: Expected %d .csv files, but %d arguments were provided.\n", 2, argc-1);
         return 1;
     }
-    if(){ /*validar que se pasen los csv*/
-        .
+    const char * requestFile = argv[1];
+    const char * typesFile = argv[2];
+    if(!hasCSVExtension(requestFile) || !hasCSVExtension(typesFile)){ /*validar que se pasen los csv*/
+        fprintf(stderr, "Error: An argument is not a .csv file.\n");
+        return 1;
     }
     cityServicesADT service = newServiceADT(NYC_archivo); /*creo el TAD para NYC*/
     .
 }
 
-int hasCSVExtension(const char *path) {
-    const char *dot = strrchr(path, '.');
-    if (dot == NULL)
-        return 0;
-    return strcmp(dot, ".csv") == 0;
-}
