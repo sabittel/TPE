@@ -7,37 +7,67 @@
 
 //============================================= STRUCTS =============================================
 
-typedef struct typeNode { /*por cada linea del Types.csv creo un nodo (es como un diccionario)*/
+/*
+    *Estructura recursiva 1
+    *Donde se guarda el nombre y codigo de una queja (una linea del csv) en un str
+*/
+
+typedef struct typeNode { 
     char *code; /*codigo*/
     char *name; /*nombre real*/
     struct typeNode *next;
 } typeNode;
 
-typedef struct typeCountNode { /*cuantas quejas hay por tipo en el barrio (Query 1)*/
+/*
+    *Estructura recursiva 2 
+    *Donde se guarda el tipo de reclamo -> str;
+    *Cuantas quejas hay por tipo en el barrio   (Query 1)
+*/
+typedef struct typeCountNode { 
     char *typeCode; /*tipo*/
     size_t count; /*contador*/
     struct typeCountNode *next;
 } typeCountNode;
 
+/*
+    *Estructura de un barrio recursiva
+    *El nombre del barrio para luego hacer la lista alfabetcamente
+    *Una lista de tipos de quejas y su cantTot, --> Query 1
+    *Un vec para las 24 hs, donde el indice representa una hora y en c/u se guardan el total de reclamos cerrados de ese barrio --> Query 2
+*/
 typedef struct boroughNode {
     char *borough; /*nombre del barrio*/
     typeCountNode *types;      /* para Query 1 */
-    size_t closedByHour[24];   /* para Query 2, cantidad de reclamos cerrados en este barrio a las n horas */
+    size_t closedByHour[24];   /* para Query 2*/
     struct boroughNode *next;
 } boroughNode;
 
+/*
+    *
+*/
 typedef struct typeListNode { /*lista de tipos usados por cuadrante*/
     char *typeCode;            /* código de tipo (distinto) */
     struct typeListNode *next;
 } typeListNode;
 
-typedef struct quadrantNode { /*representa un cuadrante*/
+/*
+    *Estructura de un cuadrante recursiva
+    *Se guarda la latitud y longitud
+    *Una lista con los tipos distintos de reclamos abiertos --> Query 3
+
+*/
+typedef struct quadrantNode { 
     int quadLat;
     int quadLon;
-    typeListNode *openTypes;   /* lista de tipos abiertos distintos */
+    typeListNode *openTypes;   
     struct quadrantNode *next;
 } quadrantNode;
 
+/*
+    *CDT final
+    *La lista de barrios
+    *La lista de cuarantes   
+*/
 typedef struct cityServicesCDT { 
     typeNode    *types;       /* diccionario code -> name */
     boroughNode *boroughs;    /* estructuras para Q1 y Q2 */
