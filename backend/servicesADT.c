@@ -84,6 +84,8 @@ int is_ValidAlloc(cityServicesADT adt){
     return 1;
 }
 
+//================================= NEW =================================
+
 cityServicesADT newServiceADT(){
     cityServicesADT new=calloc(1, sizeof(cityServicesCDT));
     if(!is_validAlloc(new)){
@@ -92,7 +94,28 @@ cityServicesADT newServiceADT(){
     return new;
 }
 
+//================================= ADD =================================
+
+typeNode addTypesRec(typeNode types, const char* code, const char* name, int * added){
+    int c;
+    if (types == NULL || (c = strcasecmp(code, types.code)) < 0)
+    {
+        typeNode new = malloc(sizeof(typeNode));
+        new.code = strdup(code);
+        new.name = strdup(name);
+        new.next = types;
+        *added = 1;
+        return new;
+    }
+    if(c > 0){
+        types.next = addTypesRec(types.next, code, name);
+    }
+    return types;
+}
+
 int addTypes(cityServicesADT cs, const char* code, const char* name){
-    
+    int added = 0;
+    cs->types = addTypesRec(cs->types, code, name, &added);
+    return added;
 }
 
