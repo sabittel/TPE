@@ -59,3 +59,7 @@ cityServicesADT newServiceADT(){
     return new;
 }
 
+int addTypes(){
+    
+}
+

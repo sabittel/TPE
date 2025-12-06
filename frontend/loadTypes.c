@@ -1,42 +1,8 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include <ctype.h>
-
 #include "../backend/servicesADT.h"
-#include "validation.h"
 
-int hasCSVExtension(const char *path);
-
-int main(int argc, char * argv[]){
-    if(!validation(argc, argv)){
-        return 1;
-    }
-    const char * requestsFile=argv[1];
-    const char * typesFile=argv[2];
-    
-
-    //Abro archivos
-    FILE *fReq = fopen(requestsFile, "r");
-    if (fReq == NULL) {
-        fprintf(stderr, "Error al abrir %s\n", requestsFile);
-        return 1;
-    }
-
-    FILE *fTypes = fopen(typesFile, "r");
-    if (fTypes == NULL) {
-        fprintf(stderr, "Error al abrir %s\n", typesFile);
-        fclose(fReq);
-        return 1;
-    }
-
-    cityServicesADT cityServiceNYC = newServiceADT(); /*creo el TAD para NYC*/
-    if (!loadTypes(fTypes, cityServiceNYC)){
-        return 1;
-    }
-}
-
-int loadTypes(FILE *fTypes, cityServicesADT cs) {
+int loadTypes(FILE *fTypes, cityServicesADT cs, const size_t id) {
     char *line = NULL;
     size_t len = 0;
     int read;
@@ -45,8 +11,7 @@ int loadTypes(FILE *fTypes, cityServicesADT cs) {
     read = getline(&line, &len, fTypes);
     if (read == -1) {          // archivo vacío o error
         free(line);
-        fprintf(stderr, "Error: archivo vacio");
-        return 1;
+        return 0;
     }
 
     /* 2) Leer cada línea de datos */
@@ -68,10 +33,17 @@ int loadTypes(FILE *fTypes, cityServicesADT cs) {
         }
 
         // Según el formato:
-        // field1 = nombre, field2 = código
-        const char *name = field1;
-        const char *code = field2;
-
+        const char *name;
+        const char *code;
+        if (id==0)
+        {
+            name = field1;
+            code = field2;
+        }
+        else{
+            name = field2;
+            code = field1;
+        }
         // Si tu CSV tiene el orden CODE;NAME, cambiás estas dos líneas:
         // const char *code = field1;
         // const char *name = field2;
@@ -84,5 +56,5 @@ int loadTypes(FILE *fTypes, cityServicesADT cs) {
     }
 
     free(line);
-    return 0;
+    return 1;
 }

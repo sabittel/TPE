@@ -5,5 +5,8 @@
 //TAD opaco
 typedef struct cityServicesCDT *cityServicesADT;
 
+cityServicesADT newServiceADT();
+
+int addTypes();
 
 #endif
