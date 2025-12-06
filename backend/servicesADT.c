@@ -7,6 +7,8 @@
 
 //============================================= STRUCTS =============================================
 
+//================================= TYPES =================================
+
 /*
     *Estructura recursiva 1
     *Donde se guarda el nombre y codigo de una queja (una linea del csv) en un str
@@ -17,6 +19,8 @@ typedef struct typeNode {
     char *name; /*nombre real*/
     struct typeNode *next;
 } typeNode;
+
+//================================= QUERY 1 & 2 =================================
 
 /*
     *Estructura recursiva 2 
@@ -42,6 +46,8 @@ typedef struct boroughNode {
     struct boroughNode *next;
 } boroughNode;
 
+//================================= QUERY 3 =================================
+
 /*
     *
 */
@@ -63,15 +69,23 @@ typedef struct quadrantNode {
     struct quadrantNode *next;
 } quadrantNode;
 
+//================================= Definitions =================================
+
+typedef quadrantNode * Tquadrant;
+typedef boroughNode * Tborough;
+typedef typeNode * Ttype;
+
+//================================= CDT =================================
+
 /*
     *CDT final
     *La lista de barrios
     *La lista de cuarantes   
 */
 typedef struct cityServicesCDT { 
-    typeNode    *types;       /* diccionario code -> name */
-    boroughNode *boroughs;    /* estructuras para Q1 y Q2 */
-    quadrantNode *quadrants;  /* estructuras para Q3 */
+    Ttype    types;       /* diccionario code -> name */
+    Tborough boroughs;    /* estructuras para Q1 y Q2 */
+    Tquadrant *quadrants;  /* estructuras para Q3 */
 }cityServicesCDT;
 
 //============================================= FUNCIONES =============================================
@@ -96,19 +110,19 @@ cityServicesADT newServiceADT(){
 
 //================================= ADD =================================
 
-typeNode addTypesRec(typeNode types, const char* code, const char* name, int * added){
+Ttype addTypesRec(Ttype types, const char* code, const char* name, int * added){
     int c;
-    if (types == NULL || (c = strcasecmp(code, types.code)) < 0)
+    if (types == NULL || (c = strcasecmp(code, types->code)) < 0)
     {
-        typeNode new = malloc(sizeof(typeNode));
-        new.code = strdup(code);
-        new.name = strdup(name);
-        new.next = types;
+        Ttype new = malloc(sizeof(typeNode));
+        new->code = strdup(code);
+        new->name = strdup(name);
+        new->next = types;
         *added = 1;
         return new;
     }
     if(c > 0){
-        types.next = addTypesRec(types.next, code, name, added);
+        types->next = addTypesRec(types->next, code, name, added);
     }
     return types;
 }
