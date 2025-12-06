@@ -108,7 +108,7 @@ typeNode addTypesRec(typeNode types, const char* code, const char* name, int * a
         return new;
     }
     if(c > 0){
-        types.next = addTypesRec(types.next, code, name);
+        types.next = addTypesRec(types.next, code, name, added);
     }
     return types;
 }
