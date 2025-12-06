@@ -8,7 +8,6 @@
 //============================================= STRUCTS =============================================
 
 //================================= TYPES =================================
-
 /*
     *Estructura recursiva 1
     *Donde se guarda el nombre y codigo de una queja (una linea del csv) en un str
@@ -85,7 +84,7 @@ typedef typeNode * Ttype;
 typedef struct cityServicesCDT { 
     Ttype    types;       /* diccionario code -> name */
     Tborough boroughs;    /* estructuras para Q1 y Q2 */
-    Tquadrant *quadrants;  /* estructuras para Q3 */
+    Tquadrant quadrants;  /* estructuras para Q3 */
 }cityServicesCDT;
 
 //============================================= FUNCIONES =============================================
