@@ -1,8 +1,7 @@
 #include <stdio.h>
-#include <ctype.h>
 #include "../backend/servicesADT.h"
 
-int loadTypes(FILE *fTypes, cityServicesADT cs, const size_t id) {
+int loadTypes(FILE *fTypes, cityServicesADT cs, const int cityId) {
     char *line = NULL;
     size_t len = 0;
     int read;
@@ -35,7 +34,7 @@ int loadTypes(FILE *fTypes, cityServicesADT cs, const size_t id) {
         // Según el formato:
         const char *name;
         const char *code;
-        if (id==0)
+        if (cityId==0)
         {
             name = field1;
             code = field2;

@@ -7,6 +7,9 @@
 #include "frontend/validation.h"
 #include "frontend/loadTypes.h"
 
+#define NYC_ID 0
+
+
 int hasCSVExtension(const char *path);
 
 int main(int argc, char * argv[]){
@@ -32,7 +35,7 @@ int main(int argc, char * argv[]){
     }
 
     cityServicesADT cityServiceNYC = newServiceADT(); /*creo el TAD para NYC*/
-    if (!loadTypes(fTypes, cityServiceNYC, 0)){
+    if (!loadTypes(fTypes, cityServiceNYC, NYC_ID)){
         return 1;
     }
 }

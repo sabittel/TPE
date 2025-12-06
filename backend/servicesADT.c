@@ -59,7 +59,7 @@ cityServicesADT newServiceADT(){
     return new;
 }
 
-int addTypes(){
+int addTypes(cityServicesADT cs, const char* code, const char* name){
     
 }
 

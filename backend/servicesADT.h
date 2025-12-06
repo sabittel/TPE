@@ -7,6 +7,6 @@ typedef struct cityServicesCDT *cityServicesADT;
 
 cityServicesADT newServiceADT();
 
-int addTypes();
+int addTypes(cityServicesADT cs, const char* code, const char* name);
 
 #endif
