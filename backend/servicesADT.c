@@ -43,17 +43,17 @@ typedef struct cityServicesCDT {
     quadrantNode *quadrants;  /* estructuras para Q3 */
 }cityServicesCDT;
 
-int validCalloc(cityServicesADT adt){
+int is_ValidAlloc(cityServicesADT adt){
     if(adt==NULL){
         fprintf(stderr, "ERROR, NO HAY MEMORIA DISPONIBLE\n");
-        return 1;
+        return 0;
     }
-    return 0;
+    return 1;
 }
 
 cityServicesADT newServiceADT(){
     cityServicesADT new=calloc(1, sizeof(cityServicesCDT));
-    if(!validCalloc(new)){
+    if(!is_validAlloc(new)){
         return NULL;
     }
     return new;
