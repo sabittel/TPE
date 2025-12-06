@@ -5,6 +5,7 @@
 #include <string.h>
 #include <math.h>
 
+//============================================= STRUCTS =============================================
 
 typedef struct typeNode { /*por cada linea del Types.csv creo un nodo (es como un diccionario)*/
     char *code; /*codigo*/
@@ -42,6 +43,8 @@ typedef struct cityServicesCDT {
     boroughNode *boroughs;    /* estructuras para Q1 y Q2 */
     quadrantNode *quadrants;  /* estructuras para Q3 */
 }cityServicesCDT;
+
+//============================================= FUNCIONES =============================================
 
 int is_ValidAlloc(cityServicesADT adt){
     if(adt==NULL){
